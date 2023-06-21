@@ -47,6 +47,8 @@ export function UserStorage({ children }: UserStorageProps) {
 				} finally {
 					setLoading(false);
 				}
+			} else {
+				setLogin(false);
 			}
 		}
 
