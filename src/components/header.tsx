@@ -7,7 +7,6 @@ import { UserContext } from '../contexts/user-context';
 export function Header() {
 	const { data, userLogout } = useContext(UserContext);
 
-	console.log(data);
 	return (
 		<header className={styles.header}>
 			<nav className={`${styles.nav} container`}>

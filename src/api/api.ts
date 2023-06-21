@@ -5,6 +5,10 @@ interface BodyProps {
 	password: string;
 }
 
+interface UserPostProps extends BodyProps {
+	email: string;
+}
+
 export function TOKEN_POST(body: BodyProps) {
 	return {
 		url: API_URL + '/jwt-auth/v1/token',
@@ -38,6 +42,19 @@ export function USER_GET(token: string) {
 			headers: {
 				Authorization: 'Bearer ' + token,
 			},
+		},
+	};
+}
+
+export function USER_POST(body: UserPostProps) {
+	return {
+		url: API_URL + '/api/user',
+		options: {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
 		},
 	};
 }

@@ -59,7 +59,7 @@ export function UserStorage({ children }: UserStorageProps) {
 		setLoading(false);
 		setLogin(false);
 		localStorage.removeItem('token');
-		navigate('/home');
+		navigate('/');
 	}
 
 	async function getUser(token: string) {
