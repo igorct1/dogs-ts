@@ -5,12 +5,15 @@ import { Button } from '../Form/button';
 import { useForm } from '../../hooks/useForm';
 import { USER_POST } from '../../api/api';
 import { UserContext } from '../../contexts/user-context';
+import { useFetch } from '../../hooks/useFetch';
+import { Error } from '../Error/error';
 
 export function LoginCreate() {
 	const username = useForm();
 	const email = useForm('email');
 	const password = useForm();
 	const { userLogin } = useContext(UserContext);
+	const { loading, error, request } = useFetch();
 
 	async function createNewUser(event: FormEvent) {
 		event.preventDefault();
@@ -21,8 +24,10 @@ export function LoginCreate() {
 				password: password.value,
 			});
 
-			const res = await fetch(url, options);
-			if (res.ok) userLogin(username.value, password.value);
+			const { response } = await request(url, options);
+			if (response && response.ok) {
+				userLogin(username.value, password.value);
+			}
 		} catch (error) {
 		} finally {
 		}
@@ -45,7 +50,13 @@ export function LoginCreate() {
 					name="password"
 					{...password}
 				/>
-				<Button>Cadastrar</Button>
+
+				{loading ? (
+					<Button disabled>Cadastrando...</Button>
+				) : (
+					<Button>Cadastrar</Button>
+				)}
+				<Error error={error} />
 			</form>
 		</section>
 	);
