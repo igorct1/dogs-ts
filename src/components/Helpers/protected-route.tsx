@@ -10,6 +10,6 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 	const { login } = useContext(UserContext);
 
 	if (login) return children;
-	else if (!login) return <Navigate to="login" />;
+	else if (login === false) return <Navigate to="/login" />;
 	else return <></>;
 }

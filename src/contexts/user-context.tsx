@@ -71,7 +71,6 @@ export function UserStorage({ children }: UserStorageProps) {
 
 		setData(json);
 		setLogin(true);
-		console.log(json);
 	}
 
 	async function userLogin(username: string, password: string) {
