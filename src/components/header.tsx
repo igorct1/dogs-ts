@@ -5,18 +5,22 @@ import { useContext } from 'react';
 import { UserContext } from '../contexts/user-context';
 
 export function Header() {
-	const { data } = useContext(UserContext);
+	const { data, userLogout } = useContext(UserContext);
 
+	console.log(data);
 	return (
 		<header className={styles.header}>
 			<nav className={`${styles.nav} container`}>
 				<Link to="/" aria-label="Dogs - Home" className={styles.logo}>
 					<Dogs />
 				</Link>
-				{data ? (
-					<Link to="/account" className={styles.login}>
-						{data.nome}
-					</Link>
+				{data.id ? (
+					<div className={styles.loginDiv}>
+						<Link to="/account" className={styles.login}>
+							{data.nome}
+						</Link>
+						<button onClick={userLogout}>Sair</button>
+					</div>
 				) : (
 					<Link to="/login" className={styles.login}>
 						Login / Criar

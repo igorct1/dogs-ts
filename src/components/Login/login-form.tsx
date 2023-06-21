@@ -7,7 +7,7 @@ import { UserContext } from '../../contexts/user-context';
 import { useContext } from 'react';
 
 export function LoginForm() {
-	const { userLogin } = useContext(UserContext);
+	const { userLogin, error, loading } = useContext(UserContext);
 
 	const username = useForm();
 	const password = useForm();
@@ -36,7 +36,12 @@ export function LoginForm() {
 					name="password"
 					{...password}
 				/>
-				<Button>Entrar</Button>
+				{loading ? (
+					<Button disabled>Carregando</Button>
+				) : (
+					<Button>Entrar</Button>
+				)}
+				{error && <p>{error}</p>}
 			</form>
 		</section>
 	);
