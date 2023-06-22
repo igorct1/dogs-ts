@@ -1,3 +1,9 @@
+import { Feed } from './Feed/feed';
+
 export function Home() {
-	return <div>home</div>;
+	return (
+		<div className="container mainContainer">
+			<Feed />
+		</div>
+	);
 }
