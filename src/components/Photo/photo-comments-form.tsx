@@ -1,0 +1,39 @@
+import { FormEvent, useState } from 'react';
+import { Send } from '../../icons/send';
+import { useFetch } from '../../hooks/useFetch';
+import { COMMENT_POST } from '../../api/api';
+
+interface PhotoCommentsFormProps {
+	id: number;
+	handleNewComment: (comment: any) => void;
+}
+
+export function PhotoCommentsForm({
+	id,
+	handleNewComment,
+}: PhotoCommentsFormProps) {
+	const { request, error } = useFetch();
+	const [comment, setComment] = useState('');
+
+	async function handleSubmit(event: FormEvent) {
+		event.preventDefault();
+		const { url, options } = COMMENT_POST(id, { comment });
+		const { response, json } = await request(url, options);
+		if (response && response.ok) handleNewComment(json);
+	}
+
+	return (
+		<form onSubmit={handleSubmit}>
+			<textarea
+				name="comment"
+				id="comment"
+				value={comment}
+				onChange={({ target }) => setComment(target.value)}
+				placeholder="Comente..."
+			/>
+			<button>
+				<Send />
+			</button>
+		</form>
+	);
+}
