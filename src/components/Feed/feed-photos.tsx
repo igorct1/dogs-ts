@@ -6,7 +6,11 @@ import { FeedPhotoItem } from './feed-photo-item';
 import { useEffect } from 'react';
 import styles from './feed-photos.module.css';
 
-export function FeedPhotos() {
+interface FeedPhotosProps {
+	handleModalPhoto: (photo: Photo) => void;
+}
+
+export function FeedPhotos({ handleModalPhoto }: FeedPhotosProps) {
 	const { data, error, loading, request } = useFetch<Photo>();
 
 	useEffect(() => {
@@ -25,7 +29,11 @@ export function FeedPhotos() {
 		return (
 			<ul className={`${styles.feed} animeLeft`}>
 				{data.map((item) => (
-					<FeedPhotoItem photo={item} key={item.id} />
+					<FeedPhotoItem
+						photo={item}
+						key={item.id}
+						handleModalPhoto={handleModalPhoto}
+					/>
 				))}
 			</ul>
 		);
