@@ -2,7 +2,11 @@ import { PHOTO_DELETE } from '../../api/api';
 import { useFetch } from '../../hooks/useFetch';
 import styles from './photo-delete.module.css';
 
-export function PhotoDelete({ id }: { id: number }) {
+type PhotoDelete = {
+	id: number;
+};
+
+export function PhotoDelete({ id }: PhotoDelete) {
 	const { request, loading } = useFetch();
 
 	async function handleDelete() {

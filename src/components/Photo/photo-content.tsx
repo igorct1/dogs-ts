@@ -6,7 +6,14 @@ import { UserContext } from '../../contexts/user-context';
 import { PhotoDelete } from './photo-delete';
 import { Image } from '../Helpers/image';
 
-export function PhotoContent({ data }: any) {
+interface PhotoContentProps {
+	data: {
+		photo: Photo;
+		comments: Comment[];
+	};
+}
+
+export function PhotoContent({ data }: PhotoContentProps) {
 	const user = useContext(UserContext);
 
 	const { photo, comments } = data;

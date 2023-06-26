@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import styles from './image.module.css';
 
-export function Image({ alt, ...props }: any) {
+interface ImageProps {
+	alt: string;
+	src: string;
+}
+
+export function Image({ alt, src, ...props }: ImageProps) {
 	const [skeleton, setSkeleton] = useState(true);
 
-	function handleLoad({ target }) {
+	function handleLoad(event: SyntheticEvent) {
 		setSkeleton(false);
-		target.style.opacity = 1;
+		const target = event.target;
+		if (target instanceof HTMLImageElement) {
+			target.style.opacity = '1';
+		}
 	}
 	return (
 		<div className={styles.wrapper}>
@@ -15,6 +23,7 @@ export function Image({ alt, ...props }: any) {
 				onLoad={handleLoad}
 				alt={alt}
 				className={styles.img}
+				src={src}
 				{...props}
 			/>
 		</div>
