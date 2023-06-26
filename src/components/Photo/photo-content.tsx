@@ -4,6 +4,7 @@ import styles from './photo-content.module.css';
 import { PhotoComments } from './photo-comments';
 import { UserContext } from '../../contexts/user-context';
 import { PhotoDelete } from './photo-delete';
+import { Image } from '../Helpers/image';
 
 export function PhotoContent({ data }: any) {
 	const user = useContext(UserContext);
@@ -13,7 +14,7 @@ export function PhotoContent({ data }: any) {
 		return (
 			<div className={styles.photo}>
 				<div className={styles.img}>
-					{photo && photo.src && <img src={photo.src} />}
+					<Image src={photo.src} alt={photo.title} />
 				</div>
 				<div className={styles.details}>
 					<p className={styles.author}>

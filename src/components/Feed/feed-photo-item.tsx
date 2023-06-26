@@ -3,6 +3,7 @@ interface FeedPhotoItemProps {
 	handleModalPhoto: (photo: Photo) => void;
 }
 
+import { Image } from '../Helpers/image';
 import styles from './feed-photo-item.module.css';
 
 export function FeedPhotoItem({ photo, handleModalPhoto }: FeedPhotoItemProps) {
@@ -11,7 +12,7 @@ export function FeedPhotoItem({ photo, handleModalPhoto }: FeedPhotoItemProps) {
 	}
 	return (
 		<li className={styles.photo} onClick={handleClickModal}>
-			<img src={photo.src} alt={photo.title} />
+			<Image src={photo.src} alt={photo.title} />
 			<span>{photo.acessos}</span>
 		</li>
 	);
