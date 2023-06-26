@@ -112,3 +112,15 @@ export function COMMENT_POST(id: number, body: { comment: string }) {
 		},
 	};
 }
+
+export function PHOTO_DELETE(id: number) {
+	return {
+		url: API_URL + `/api/photo/${id}`,
+		options: {
+			method: 'DELETE',
+			headers: {
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+			},
+		},
+	};
+}

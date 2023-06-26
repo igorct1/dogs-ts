@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 export function useFetch<T>(T?: T) {
-	const [data, setData] = useState<T[]>([]);
+	const [data, setData] = useState<T[] | null>(null);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 
