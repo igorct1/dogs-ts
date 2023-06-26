@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import { Send } from '../../icons/send';
 import { useFetch } from '../../hooks/useFetch';
 import { COMMENT_POST } from '../../api/api';
+import styles from './photo-comments-form.module.css';
 
 interface PhotoCommentsFormProps {
 	id: number;
@@ -23,15 +24,16 @@ export function PhotoCommentsForm({
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className={styles.form}>
 			<textarea
+				className={styles.textarea}
 				name="comment"
 				id="comment"
 				value={comment}
 				onChange={({ target }) => setComment(target.value)}
 				placeholder="Comente..."
 			/>
-			<button>
+			<button className={styles.sendButton}>
 				<Send />
 			</button>
 		</form>
