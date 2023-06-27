@@ -12,6 +12,7 @@ import styles from './photo-comments.module.css';
 interface PhotoCommentsProps {
 	id: number;
 	comments: Comment[];
+	single: boolean;
 }
 
 export function PhotoComments(props: PhotoCommentsProps) {
@@ -33,7 +34,12 @@ export function PhotoComments(props: PhotoCommentsProps) {
 
 	return (
 		<>
-			<ul className={styles.comments} ref={commentsSection}>
+			<ul
+				className={`${styles.comments} ${
+					props.single ? styles.single : ''
+				}`}
+				ref={commentsSection}
+			>
 				{comments.map((comment) => (
 					<li key={comment.comment_ID}>
 						<strong>{comment.comment_author}: </strong>
@@ -44,6 +50,7 @@ export function PhotoComments(props: PhotoCommentsProps) {
 
 			{login && (
 				<PhotoCommentsForm
+					single={props.single}
 					id={props.id}
 					handleNewComment={handleNewComment}
 				/>

@@ -7,13 +7,15 @@ import styles from './photo-comments-form.module.css';
 interface PhotoCommentsFormProps {
 	id: number;
 	handleNewComment: (comment: any) => void;
+	single: boolean;
 }
 
 export function PhotoCommentsForm({
+	single,
 	id,
 	handleNewComment,
 }: PhotoCommentsFormProps) {
-	const { request, error } = useFetch();
+	const { request } = useFetch();
 	const [comment, setComment] = useState('');
 
 	async function handleSubmit(event: FormEvent) {
@@ -24,7 +26,10 @@ export function PhotoCommentsForm({
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className={styles.form}>
+		<form
+			onSubmit={handleSubmit}
+			className={`${styles.form} ${single ? styles.single : ''}`}
+		>
 			<textarea
 				className={styles.textarea}
 				name="comment"

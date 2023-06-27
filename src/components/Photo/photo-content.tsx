@@ -6,14 +6,20 @@ import { UserContext } from '../../contexts/user-context';
 import { PhotoDelete } from './photo-delete';
 import { Image } from '../Helpers/image';
 
-export function PhotoContent({ data }: { data: Data }) {
+export function PhotoContent({
+	data,
+	single,
+}: {
+	data: Data;
+	single: boolean;
+}) {
 	const user = useContext(UserContext);
 
 	const { photo, comments } = data;
 
 	if (photo)
 		return (
-			<div className={styles.photo}>
+			<div className={`${styles.photo} ${single ? styles.single : ''}`}>
 				<div className={styles.img}>
 					<Image src={photo.src} alt={photo.title} />
 				</div>
@@ -37,7 +43,11 @@ export function PhotoContent({ data }: { data: Data }) {
 						<li>{photo.idade} anos</li>
 					</ul>
 				</div>
-				<PhotoComments id={photo.id} comments={comments} />
+				<PhotoComments
+					single={single}
+					id={photo.id}
+					comments={comments}
+				/>
 			</div>
 		);
 }
