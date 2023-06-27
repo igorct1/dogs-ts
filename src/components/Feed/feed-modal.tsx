@@ -13,7 +13,9 @@ interface FeedModalProps {
 }
 
 export function FeedModal({ photo, handleModalPhoto }: FeedModalProps) {
-	const { data, error, loading, request } = useFetch();
+	const { error, loading, request, data } = useFetch<Data>();
+
+	if (!data) return null;
 
 	function handleOutsideClick(event: MouseEvent) {
 		const { target, currentTarget } = event;
