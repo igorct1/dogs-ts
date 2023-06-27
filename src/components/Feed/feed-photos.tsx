@@ -8,15 +8,27 @@ import styles from './feed-photos.module.css';
 
 interface FeedPhotosProps {
 	handleModalPhoto: (photo: Photo) => void;
+	user: number;
+	page: number;
+	setInfinite: (arg: boolean) => void;
 }
 
-export function FeedPhotos({ handleModalPhoto }: FeedPhotosProps) {
+export function FeedPhotos({
+	handleModalPhoto,
+	user,
+	page,
+	setInfinite,
+}: FeedPhotosProps) {
 	const { data, error, loading, request } = useFetch<Photo[]>();
 
 	useEffect(() => {
 		async function getPhotos() {
-			const { url, options } = PHOTOS_GET({ page: 1, total: 6, user: 0 });
-			const { json } = await request(url, options);
+			const total = 3;
+			const { url, options } = PHOTOS_GET({ page, total, user });
+			const { response, json } = await request(url, options);
+
+			if (response && response.ok && json.length < total)
+				setInfinite(false);
 		}
 		getPhotos();
 	}, []);

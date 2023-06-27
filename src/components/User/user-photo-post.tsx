@@ -16,10 +16,6 @@ export function UserPhotoPost() {
 	const navigate = useNavigate();
 	const { data, error, loading, request } = useFetch();
 
-	useEffect(() => {
-		if (data) navigate('/account');
-	}, [data]);
-
 	const [img, setImg] = useState(
 		{} as {
 			raw: File;
@@ -36,7 +32,8 @@ export function UserPhotoPost() {
 		formData.append('peso', weight.value);
 		formData.append('idade', age.value);
 		const { url, options } = PHOTO_POST(formData, token);
-		request(url, options);
+		const { response } = await request(url, options);
+		if (response && response.ok) navigate('/account');
 	}
 
 	function handleImgChange(event: FormEvent) {
