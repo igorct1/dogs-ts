@@ -14,28 +14,30 @@ import { NotFound } from './components/not-found';
 
 export default function App() {
 	return (
-		<div>
+		<div className="App">
 			<BrowserRouter>
 				<UserStorage>
 					<Header />
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/login/*" element={<Login />} />
-						<Route
-							path="/account/*"
-							element={
-								<ProtectedRoute>
-									<User />
-								</ProtectedRoute>
-							}
-						/>
-						<Route path="/photo/:id" element={<Photo />} />
-						<Route
-							path="/profile/:user"
-							element={<UserProfile />}
-						/>
-						<Route path="*" element={<NotFound />} />
-					</Routes>
+					<main className="Appbody">
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/login/*" element={<Login />} />
+							<Route
+								path="/account/*"
+								element={
+									<ProtectedRoute>
+										<User />
+									</ProtectedRoute>
+								}
+							/>
+							<Route path="/photo/:id" element={<Photo />} />
+							<Route
+								path="/profile/:user"
+								element={<UserProfile />}
+							/>
+							<Route path="*" element={<NotFound />} />
+						</Routes>
+					</main>
 					<Footer />
 				</UserStorage>
 			</BrowserRouter>
