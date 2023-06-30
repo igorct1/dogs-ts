@@ -21,8 +21,6 @@ export function FeedPhotos({
 }: FeedPhotosProps) {
 	const { data, error, loading, request } = useFetch<Photo[]>();
 
-	console.log('feedphotos', user);
-
 	useEffect(() => {
 		async function getPhotos() {
 			const total = 3;

@@ -6,10 +6,11 @@ import { PHOTO_GET } from '../../api/api';
 import { Error } from '../Error/error';
 import { Loading } from '../Helpers/loading';
 import { PhotoContent } from './photo-content';
+import { Head } from '../Helpers/head';
+
 export function Photo() {
 	const { id } = useParams();
 	const { data, loading, error, request } = useFetch<Data>();
-
 	console.log(data);
 	useEffect(() => {
 		if (id) {
@@ -22,6 +23,7 @@ export function Photo() {
 	if (data)
 		return (
 			<section className="container mainContainer">
+				<Head title={data.photo.title} />
 				<PhotoContent data={data} single={true} />
 			</section>
 		);

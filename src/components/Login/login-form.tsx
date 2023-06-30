@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './login-form.module.css';
 import stylesBtn from '../Form/button.module.css';
+import { Head } from '../Helpers/head';
 
 export function LoginForm() {
 	const { userLogin, error, loading } = useContext(UserContext);
@@ -27,6 +28,7 @@ export function LoginForm() {
 
 	return (
 		<section className="animeLeft">
+			<Head title="Login" />
 			<h1 className="title">Login</h1>
 			<form className={styles.form} onSubmit={handleLogin}>
 				<Input
