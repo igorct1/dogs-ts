@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../contexts/user-context';
 
 import styles from './login.module.css';
+import { NotFound } from '../not-found';
 
 export function Login() {
 	const { login } = useContext(UserContext);
@@ -17,9 +18,10 @@ export function Login() {
 			<div className={styles.forms}>
 				<Routes>
 					<Route path="/" element={<LoginForm />} />
-					<Route path="create" element={<LoginCreate />} />
-					<Route path="lost" element={<LoginPasswordLost />} />
-					<Route path="reset" element={<LoginPasswordReset />} />
+					<Route path="/create" element={<LoginCreate />} />
+					<Route path="/lost" element={<LoginPasswordLost />} />
+					<Route path="/reset" element={<LoginPasswordReset />} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</div>
 		</section>

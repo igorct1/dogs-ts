@@ -1,21 +1,11 @@
 export const API_URL = 'https://dogsapi.origamid.dev/json';
 
-interface BodyProps {
+interface TokenPostProps {
 	username: string;
 	password: string;
 }
 
-interface UserPostProps extends BodyProps {
-	email: string;
-}
-
-interface PhotoGetProps {
-	page: number;
-	total: number;
-	user: number;
-}
-
-export function TOKEN_POST(body: BodyProps) {
+export function TOKEN_POST(body: TokenPostProps) {
 	return {
 		url: API_URL + '/jwt-auth/v1/token',
 		options: {
@@ -52,6 +42,10 @@ export function USER_GET(token: string) {
 	};
 }
 
+interface UserPostProps extends TokenPostProps {
+	email: string;
+}
+
 export function USER_POST(body: UserPostProps) {
 	return {
 		url: API_URL + '/api/user',
@@ -78,7 +72,13 @@ export function PHOTO_POST(formData: FormData, token: string) {
 	};
 }
 
-export function PHOTOS_GET({ page, total, user }: PhotoGetProps) {
+interface PhotosGetPost {
+	page: number;
+	total: number;
+	user: string;
+}
+
+export function PHOTOS_GET({ page, total, user }: PhotosGetPost) {
 	return {
 		url:
 			API_URL + `/api/photo/?_page=${page}&_total=${total}&_user=${user}`,
@@ -121,6 +121,43 @@ export function PHOTO_DELETE(id: number) {
 			headers: {
 				Authorization: 'Bearer ' + localStorage.getItem('token'),
 			},
+		},
+	};
+}
+
+interface PasswordLostProps {
+	login: string;
+	url: string;
+}
+
+export function PASSWORD_LOST(body: PasswordLostProps) {
+	return {
+		url: API_URL + '/api/password/lost',
+		options: {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		},
+	};
+}
+
+interface PasswordResetProps {
+	login: string;
+	key: string;
+	password: string;
+}
+
+export function PASSWORD_RESET(body: PasswordResetProps) {
+	return {
+		url: API_URL + '/api/password/reset',
+		options: {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
 		},
 	};
 }

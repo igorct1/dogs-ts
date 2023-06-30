@@ -4,7 +4,7 @@ import { FeedPhotos } from './feed-photos';
 import { useState, useEffect } from 'react';
 
 type FeedProps = {
-	user: number;
+	user: string;
 };
 
 export function Feed({ user }: FeedProps) {

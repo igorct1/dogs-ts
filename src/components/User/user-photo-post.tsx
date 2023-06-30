@@ -14,7 +14,7 @@ export function UserPhotoPost() {
 	const age = useForm();
 	const token = localStorage.getItem('token')!;
 	const navigate = useNavigate();
-	const { data, error, loading, request } = useFetch();
+	const { error, loading, request } = useFetch();
 
 	const [img, setImg] = useState(
 		{} as {

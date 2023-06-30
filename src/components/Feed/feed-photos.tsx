@@ -8,7 +8,7 @@ import styles from './feed-photos.module.css';
 
 interface FeedPhotosProps {
 	handleModalPhoto: (photo: Photo) => void;
-	user: number;
+	user: string;
 	page: number;
 	setInfinite: (arg: boolean) => void;
 }
@@ -20,6 +20,8 @@ export function FeedPhotos({
 	setInfinite,
 }: FeedPhotosProps) {
 	const { data, error, loading, request } = useFetch<Photo[]>();
+
+	console.log('feedphotos', user);
 
 	useEffect(() => {
 		async function getPhotos() {
