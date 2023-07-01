@@ -34,7 +34,7 @@ export function FeedModal({ photo, handleModalPhoto }: FeedModalProps) {
 		<div className={styles.modal} onClick={handleOutsideClick}>
 			{error && <Error error={error} />}
 			{loading && <Loading />}
-			{data && <PhotoContent data={data} />}
+			{data && <PhotoContent single={false} data={data} />}
 		</div>
 	);
 }

@@ -23,8 +23,14 @@ export function FeedPhotos({
 
 	useEffect(() => {
 		async function getPhotos() {
-			const total = 3;
-			const { url, options } = PHOTOS_GET({ page, total, user });
+			const defaultUserValue = '0';
+
+			const total = 6;
+			const { url, options } = PHOTOS_GET({
+				page,
+				total,
+				user: user ? user : defaultUserValue,
+			});
 			const { response, json } = await request(url, options);
 
 			if (response && response.ok && json.length < total)
