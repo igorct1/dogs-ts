@@ -39,7 +39,6 @@ export function UserStorage({ children }: UserStorageProps) {
 					if (!res.ok) {
 						throw new Error('Token inválido!');
 					}
-					// const json = await res.json();
 
 					await getUser(token);
 				} catch (error) {

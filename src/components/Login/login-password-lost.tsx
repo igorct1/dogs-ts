@@ -18,8 +18,7 @@ export function LoginPasswordLost() {
 				login: login.value,
 				url: 'https://localhost:3000/login/reset',
 			});
-
-			const { json, response } = await request(url, options);
+			request(url, options);
 		}
 	}
 
