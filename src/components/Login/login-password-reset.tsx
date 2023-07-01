@@ -37,7 +37,7 @@ export function LoginPasswordReset() {
 	}, []);
 
 	return (
-		<div>
+		<section className="animeLeft">
 			<Head title="Resete sua senha" />
 
 			<h1 className="title">Resete a senha</h1>
@@ -56,6 +56,6 @@ export function LoginPasswordReset() {
 				)}
 				{error && <Error error={error} />}
 			</form>
-		</div>
+		</section>
 	);
 }
