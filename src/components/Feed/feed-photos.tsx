@@ -8,7 +8,7 @@ import styles from './feed-photos.module.css';
 
 interface FeedPhotosProps {
 	handleModalPhoto: (photo: Photo) => void;
-	user: string;
+	user?: string;
 	page: number;
 	setInfinite: (arg: boolean) => void;
 }
