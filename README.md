@@ -1,10 +1,30 @@
-# Readme em construção
+# Descrição
 
-## Dogs
-
-Criação do projeto Dogs | Uma rede social para cachorros estilo instagram.
+Dogs - Uma rede social para cachorros🐕
 
 ## Tecnologias
 
--   React (vite)
+-   React.js (vite)
 -   TypeScript
+-   Victory lib (graphs)
+-   Phosphor React (icons)
+
+## Como utilizar?
+
+**Clone o repositório**
+
+```bash
+$ git clone https://github.com/igorct1/dogs-ts.git
+```
+
+**Instale as dependências**
+
+```bash
+$ npm install
+```
+
+**Rode o projeto**
+
+```bash
+$ npm start
+```
